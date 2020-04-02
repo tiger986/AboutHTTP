@@ -25,6 +25,18 @@
    encodeURIComponent(url)  会将url整个编码
 
 6. http报文
-   http报文用于http协议交互的信息，它是http应用程序之间发送的数据块，这些数据块以一些文本形式的元信息开头，
+   (1) http报文用于http协议交互的信息，它是http应用程序之间发送的数据块，这些数据块以一些文本形式的元信息开头，
    http报文分为请求报文和响应报文。
+   (2) 报文的组成部分：
+       a. 起始行 在请求报文中说明要做什么，在响应报文中说明出现了什么情况（请求接口时，在浏览器的network中的XHR中找到该请求，在该请求的headers中可以找到Request Headers即请求报文，
+       在该请求的headers中可以找到Response Headers即响应报文）。报文中的第一行就是起始行。
+       请求报文的起始行，如：POST http://gao/getList HTTP/1.1)，它包含了请求方式、请求的URL和协议版本（说明做了什么）
+       响应报文的起始行，如：HTTP/1.1 404 Not Found（说明出现了什么情况）
+       b. 首部字段 每个首部字段都包含一个名字和一个值并用冒号隔开（键值对）。
+       c. 主体 请求报文的主体包含发送给服务器的数据，响应报文的主体包含返给客户端的数据。
+   (3) 在请求报文的主体中查找参数是以什么方式传给后台的：
+       Query String Parameters 通过参数传参  （'./test.json?name=gao&password=123'）
+       Form Data 通过表单传参 （ajax的contentType设为默认值，即‘application/x-www-form-urlencoded’，data为{}）
+       Request Payload 通过json字符串传参  （ajax的contentType设为‘application/json; charset=utf-8’，data为JSON.stringify({})）
+
    
